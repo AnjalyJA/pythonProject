@@ -48,6 +48,8 @@ def smallestSubarrayWithGivenSum(arr,k):
 
 
 
+
+
 # 1: Find Avg of sub-array
 # https://leetcode.com/problems/maximum-average-subarray-i/
 # TimeComp : O(N)
