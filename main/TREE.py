@@ -29,6 +29,7 @@ class Node:
         if self.right:
             self.right.printTree()
 
+    #stack
     def inOrderTraversal(self,root):
         current = root
         stack = []
@@ -43,6 +44,33 @@ class Node:
             else:
                 break
 
+    #recursion
+    def preorderTraversal1(self, root):
+        res = []
+        if root:
+            res.append(root.data)
+            res = res + self.preorderTraversal1(root.left)
+            res = res + self.preorderTraversal1(root.right)
+        return res
+
+    #stack
+    def preOrderTraversal2(self,root):
+        nodeStack = []
+        nodeStack.append(root)
+
+        while(len(nodeStack)>0):
+            node = nodeStack.pop()
+            print(node.data, end = " ")
+            if node.right is not None:
+                nodeStack.append(node.right)
+            if node.left is not None:
+                nodeStack.append(node.left)
+
+
+
+
+
+
 
 
 
@@ -52,7 +80,7 @@ root.insertNode(14)
 root.insertNode(3)
 root.insertNode(4)
 root.insertNode(31)
-root.insertNode(15)
-#root.printTree()
-root.inOrderTraversal(root)
+
+root.printTree()
+root.preOrderTraversal2(root)
 
