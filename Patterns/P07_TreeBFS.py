@@ -39,6 +39,32 @@ class Node:
             return_list.append(ans)
         return return_list
 
+#2. Binary Tree Reverse Level Order Traversal (easy)
+#https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+    def revLevelOrder(self,root):
+        if root is None:
+            return root
+        stack = []
+        queue = []
+        return_list = []
+        queue.append(root)
+        while len(queue)>0:
+            l = len(queue)
+            ans = []
+            for x in range(l):
+                node = queue.pop(0)
+                ans.append(node.data)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            stack.append(ans)
+        while stack:
+            return_list.append(stack.pop())
+        return return_list
+
+
+
 root = Node(5)
 root.insert(3)
 root.insert(2)
@@ -48,4 +74,4 @@ root.insert(6)
 root.insert(8)
 root.insert(1)
 
-print(root.levelOrder(root))
+print(root.revLevelOrder(root))
