@@ -1,3 +1,5 @@
+from numpy import inf
+
 #1. Binary Tree Level Order Traversal (easy)
 #https://leetcode.com/problems/binary-tree-level-order-traversal/
 class Node:
@@ -114,6 +116,54 @@ class Node:
             levelAvg.append(nodeSum/nodeCount)
         return levelAvg
 
+#5.Level Maximum in a Binary Tree
+#https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
+    def maxLevelSum(self, root):
+        if not root:
+            return root
+        queue = []
+        queue.append(root)
+        maxSum = float(-inf)
+        level = 0
+        return_val = 0
+        while len(queue)>0:
+            level += 1
+            levelSum = 0
+            l = len(queue)
+            for i in range(l):
+                node = queue.pop(0)
+                levelSum += node.data
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            if levelSum > maxSum:
+                maxSum = levelSum
+                return_val = level
+        return return_val
+
+#6.Minimum Depth of a Binary Tree (easy)
+#https://leetcode.com/problems/minimum-depth-of-binary-tree/
+    def minDepth(self, root):
+        if not root:
+            return root
+        queue = []
+        queue.append(root)
+        level = 0
+        while len(queue):
+            level += 1
+            q_length = len(queue)
+            for i in range(q_length):
+                node = queue.pop(0)
+                if node.left is None and node.right is None:
+                    return level
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+
+
 
 root = Node(5)
 root.insert(3)
@@ -124,4 +174,5 @@ root.insert(6)
 root.insert(8)
 root.insert(1)
 
-print(root.averageOfLevels(root))
+print(root.maxLevelSum(root))
+print(root.minDepth(root))
