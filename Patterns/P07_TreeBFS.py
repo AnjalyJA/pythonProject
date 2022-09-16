@@ -162,7 +162,24 @@ class Node:
                 if node.right:
                     queue.append(node.right)
 
+#7.Maximum Depth of a Binary Tree
+#https://leetcode.com/problems/maximum-depth-of-binary-tree/
+    def maxDepth(self, root):
+        if not root:
+            return 0
+        queue = [root]
+        maxDepth = 0
+        while len(queue):
+            l = len(queue)
+            maxDepth += 1
+            for i in range(l):
+                node = queue.pop(0)
 
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return maxDepth
 
 
 root = Node(5)
@@ -176,3 +193,4 @@ root.insert(1)
 
 print(root.maxLevelSum(root))
 print(root.minDepth(root))
+print(root.maxDepth(root))
