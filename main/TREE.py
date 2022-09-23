@@ -85,8 +85,10 @@ class Node:
             self.right.printTree()
 
     def iterativeSearch(self,root,val):
+        print("iterativeSearch::started")
         while root:
             if root.data == val:
+                print("iterativeSearch::root.data is equal to vall")
                 return True
             elif(root.data>val):
                 root = root.left
@@ -94,6 +96,8 @@ class Node:
                 root = root.right
             else:
                 return False
+
+#deletion
 
 
 
@@ -108,12 +112,14 @@ root.insert(6)
 root.insert(8)
 root.insert(1)
 
-root.inOrderTraversal(root)
-root.preOrderTraversal(root)
-root.postOrderTraversal(root)
 
-if root.iterativeSearch(root,3):
+print(root.levelOrder(root))
+#root.inOrderTraversal(root)
+#root.preOrderTraversal(root)
+#root.postOrderTraversal(root)
+
+"""if root.iterativeSearch(root,3):
     print("found")
 else:
-    print("not found")
+    print("not found")"""
 root.printTree()

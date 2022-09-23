@@ -75,6 +75,77 @@ def maxProfit(prices):
             maxProfit = prices[i] - minPrice
     return maxProfit
 
+def longestPalindrome(s):
+    pairs = 0
+    unpaired = set()
+    for char in s:
+        if char in unpaired:
+            pairs += 1
+            unpaired.remove(char)
+        else:
+            unpaired.add(char)
+    if unpaired:
+        return pairs*2 + 1
+    else:
+        return pairs*2
+
+def levelOrder(root):
+    if not root:
+        return root
+    queue = [root]
+    output = []
+    while queue:
+        ans = []
+        l = len(queue)
+        for i in range(l):
+            node = queue.pop(0)
+            ans.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        output.append(ans)
+    return output
+
+#def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
+def isCousins(root, x, y):
+    if not root:
+        return root
+    if not x and not y:
+        return false
+    queue = [root]
+    while queue:
+        l = len(queue)
+        ans = []
+        for i in range(l):
+            node = queue.pop(0)
+            ans.append(node.val)
+            if x == node.left and y == node.right:
+                return False
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        if x in ans and y in ans:
+            return True
+    return False
+
+def isCousins(self, root, x, y):
+	nodes = collections.defaultdict(list)
+	queue = [(root,0,0)]
+	while queue:
+		node,level,parent = queue.pop(0)
+		nodes[node.val] = [level,parent]
+
+		if node.left:
+			queue.append((node.left,level+1,node.val))
+		if node.right:
+			queue.append((node.right,level+1,node.val))
+
+	if nodes[x][0]==nodes[y][0] and nodes[x][1] != nodes[y][1]:
+		return True
+
+	return False
 
 #https://leetcode.com/problems/running-sum-of-1d-array/
 #1480.Running Sum of 1d Array
@@ -124,3 +195,12 @@ print(maxProfit(prices))
 
 #https://leetcode.com/problems/longest-palindrome/
 #10.Longest Palindrome
+print("10. Longest Palindrome")
+s = "abghhgbaa"
+print(longestPalindrome(s))
+
+#https://leetcode.com/problems/binary-tree-level-order-traversal/
+#11. Binary Tree Level Order Traversal
+
+
+isCousins([1,2,3,null,4])
