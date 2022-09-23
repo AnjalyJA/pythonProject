@@ -179,6 +179,7 @@ class Node:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
+        print("maxDepth: completed")
         return maxDepth
 
 
