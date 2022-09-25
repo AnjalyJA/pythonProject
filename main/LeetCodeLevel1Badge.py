@@ -147,6 +147,52 @@ def isCousins(self, root, x, y):
 
 	return False
 
+#
+#13
+def search(self, nums, target):
+    l, r = 0, len(nums) - 1
+    while l <= r:
+        mid = (l + r) // 2
+        if nums[mid] < target:
+            l = mid + 1
+        elif nums[mid] > target:
+            r = mid - 1
+        else:
+            return mid
+    return -1
+
+#
+#14
+
+def isBadVersion(mid):
+    return 1
+
+def firstBadVersion(n)
+    left = 1
+    right = n
+    while left < right:
+        mid = left + (right - left) / 2
+        if isBadVersion(mid):
+            right = mid
+        else:
+            left = mid + 1
+    return left
+
+
+a, b = 0, 1
+
+for _ in repeat(None, n):
+    a, b = b, a + b
+return a
+
+def fib(N):
+	if N == 0: return 0
+	if N == 1: return 1
+	return fib(N-1) + fib(N-2)
+
+
+
+
 #https://leetcode.com/problems/running-sum-of-1d-array/
 #1480.Running Sum of 1d Array
 nums = [1,2,3,4]
