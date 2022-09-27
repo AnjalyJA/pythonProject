@@ -191,6 +191,74 @@ def fib(N):
 	return fib(N-1) + fib(N-2)
 
 
+def islandPerimeter(self, grid: List[List[int]]) -> int:
+    if not grid:
+        return 0
+    m, n = len(grid), len(grid[0])
+    islands, neighbors = 0, 0
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j]:
+                islands += 1
+                if i < m - 1 and grid[i + 1][j] == 1:
+                    neighbors += 1
+                if j < n - 1 and grid[i][j + 1] == 1:
+                    neighbors += 1
+    return islands * 4 - neighbors * 2
+
+def numIslands(self, grid: List[List[str]]) -> int:
+    if not grid:
+        return 0
+    count = 0
+    m, n = len(grid), len(grid[0])
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == '1':
+                self.dfs(grid, i, j)
+                count += 1
+    return count
+
+def dfs(self, grid, i, j):
+    m, n = len(grid), len(grid[0])
+    if i < 0 or j < 0 or i >= m or j >= n or grid[i][j] != '1':
+        return 0
+    grid[i][j] = '#'
+    self.dfs(grid, i - 1, j)
+    self.dfs(grid, i + 1, j)
+    self.dfs(grid, i, j - 1)
+    self.dfs(grid, i, j + 1)
+
+    def closedIsland(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        if not grid or not grid[0]:
+            return 0
+
+        m, n = len(grid), len(grid[0])
+
+        def dfs(i, j, val):
+            if 0 <= i < m and 0 <= j < n and grid[i][j] == 0:
+                grid[i][j] = val
+                dfs(i, j + 1, val)
+                dfs(i + 1, j, val)
+                dfs(i - 1, j, val)
+                dfs(i, j - 1, val)
+
+        for i in range(m):
+            for j in range(n):
+                if (i == 0 or j == 0 or i == m - 1 or j == n - 1) and grid[i][j] == 0:
+                    dfs(i, j, 1)
+
+        res = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 0:
+                    dfs(i, j, 1)
+                    res += 1
+
+        return res
 
 
 #https://leetcode.com/problems/running-sum-of-1d-array/
