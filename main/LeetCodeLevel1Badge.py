@@ -260,6 +260,28 @@ def dfs(self, grid, i, j):
 
         return res
 
+def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+    if not grid or grid[0]:
+        return 0
+    m, n = len(grid), len(grid[0])
+    areas = []
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == 1:
+                areas.append(dfs(i, j))
+    return max(areas)
+
+def dfs(i, j):   # not correct
+    if i < 0 or j < 0 or i >= m or j >= n or grid[i][j] != 1:
+        return 0
+    grid[i][j] = '#'
+    count += 1
+    dfs(i + 1, j)
+    dfs(i - 1, j)
+    dfs(i, j + 1)
+    dfs(i, j - 1)
+    return count
+
 
 #https://leetcode.com/problems/running-sum-of-1d-array/
 #1480.Running Sum of 1d Array
